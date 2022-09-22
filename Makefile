@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test lint test
+.PHONY: clean clean-build clean-pyc clean-test lint
 
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
@@ -20,20 +20,6 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-lint:
-# CI env-var is set by GitHub actions
-ifdef CI
-	python -m pre_commit run --all-files --show-diff-on-failure
-else
-	python -m pre_commit run --all-files
-endif
-	python -m mypy pytest_asyncio --show-error-codes
-
-test:
-	coverage run -m pytest tests
-	coverage xml
-	coverage report
-
-install:
-	pip install -U pre-commit
-	pre-commit install
+lint: ## check style with flake8
+	flake8 pytest_asyncio tests
+	black --check --verbose pytest_asyncio tests

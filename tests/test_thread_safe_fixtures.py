@@ -26,7 +26,7 @@ async def async_fixture(event_loop):
 
 
 @pytest.mark.asyncio
-async def test_event_loop_thread_safe(async_fixture):
+def test_event_loop_thread_safe(async_fixture):
     """Make sure that async fixtures still work, even if the event loop
     is running in another thread.
     """
