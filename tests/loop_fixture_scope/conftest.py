@@ -3,16 +3,14 @@ import asyncio
 import pytest
 
 
-class CustomSelectorLoopSession(asyncio.SelectorEventLoop):
+class CustomSelectorLoop(asyncio.SelectorEventLoop):
     """A subclass with no overrides, just to test for presence."""
 
-    pass
+
+loop = CustomSelectorLoop()
 
 
-loop = CustomSelectorLoopSession()
-
-
-@pytest.fixture(scope="package")
+@pytest.fixture(scope="module")
 def event_loop():
     """Create an instance of the default event loop for each test case."""
     yield loop
