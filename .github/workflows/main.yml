@@ -17,7 +17,7 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       prerelease: ${{ steps.version.outputs.prerelease }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - uses: actions/setup-python@v4
@@ -58,7 +58,7 @@ jobs:
         python-version: ['3.7', '3.8', '3.9', '3.10', 3.11-dev]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - uses: actions/setup-python@v4
@@ -103,7 +103,7 @@ jobs:
       run: |
         sudo apt-get install -y pandoc
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Download distributions
